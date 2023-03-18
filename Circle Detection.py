@@ -82,13 +82,11 @@ class CircleDetector:
                 child2 = self.mutation(child2)
                 self.population.append(child1)
                 self.population.append(child2)
-        # print(best_individual.type)
         return self.best_individual
-        
 
 if __name__ == "__main__":
     detector = CircleDetector("/home/rakib/Documents/4th Kibo RPC/circle.png", 50, 100)
     best_individual = detector.evaluate_fitness
-    cv2.imshow('circle', detector)
+    cv2.imshow('Circle Detected',img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
