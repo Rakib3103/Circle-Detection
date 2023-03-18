@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import random
+from PIL import Image
 
 class CircleDetector:
     def __init__(self, image_path, population_size, max_generations):
@@ -86,7 +87,21 @@ class CircleDetector:
 
 if __name__ == "__main__":
     detector = CircleDetector("/home/rakib/Documents/4th Kibo RPC/circle.png", 50, 100)
-    best_individual = detector.evaluate_fitness
-    cv2.imshow('Circle Detected',img)
+    best_individual = detector.evolve()
+    img = cv2.imread(detector.image_path)
+    x, y, r = best_individual
+    cv2.circle(img, (x, y), r, (0, 255, 0), 2)
+    cv2.imshow('Circle Detected', img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+#-------------------------------------------------------- For displaying the test image -----------------------------------------------------------------------------------#
+# import cv2
+
+# # Load a simple test image
+# img = cv2.imread('/home/rakib/Documents/4th Kibo RPC/circle.png')
+
+# # Display the image
+# cv2.imshow('Test Image', img)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
